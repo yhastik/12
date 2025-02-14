@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background: #DAB57F;
+    color: #fff;
+}
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.delete-button:hover {
+    background-color: #c82333;
+}
+html{
+    /* Растягиваем документ на всю высоту окна */
+    height: 100%;
+}
+body{
+    /* Растягиваем body по высоте html */
+    min-height: 100%;
+}
