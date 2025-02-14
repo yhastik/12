@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Домашняя видеотека</title>
+    
+    <header>
+        <h1>Домашняя видеотека</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="album.html">Фильмы</a></li>
+                <li><a href="plelist.html">Для детей</a></li>
+                <li><a href="admin.html">Администрация</a></li>
+                <li id="profileLink" style="display: none;" class="dropdown">
+                    <span id="usernameDisplay"></span>
+                    <div class="dropdown-content">
+                        <a href="#" id="logoutButton">Выход</a>
+                    </div>
+                </li>
+                <li><a href="login.html" id="loginLink" style="display: inline;">Вход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Рекомендации</h2>
+        <div class="slider-container">
+        <div class="slider" id="slider">
+            <!-- Карточки будут добавлены сюда -->
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Домашняя видеотека</p>
+    </footer>
+
+
+
+
+
+
+    <script src="script.js"></script>
+    <script>
+        // Проверка авторизации пользователя
+        const username = localStorage.getItem('username');
+        const email = localStorage.getItem('email');
+
+        if (username && email) {
+            document.getElementById('usernameDisplay').innerText = username;
+            document.getElementById('profileLink').style.display = 'inline-block';
+            document.getElementById('loginLink').style.display = 'none';
+        } else {
+            document.getElementById('profileLink').style.display = 'none';
+            document.getElementById('loginLink').style.display = 'inline';
+        }
+
+        // Обработка выхода
+        document.getElementById('logoutButton').addEventListener('click', function () {
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            // Обновляем видимость элементов навигации
+            document.getElementById('profileLink').style.display = 'none';
+            document.getElementById('loginLink').style.display = 'inline';
+            window.location.reload(); // Перезагрузка страницы
+        });
+
+
+
+
+
+        // Инициализация слайдера при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = JSON.parse(localStorage.getItem('cards')) || [];
+            renderCards(cards);
+        });
+
+
+
+    </script>
+    </body>
+
+</html>
